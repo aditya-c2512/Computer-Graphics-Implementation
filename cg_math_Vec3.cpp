@@ -52,5 +52,10 @@ public :
     Vec3<T> operator * (const T& r) const
     { return Vec3<T>(x*r, y*r, z*r); }
 
+    void debugPrint()
+    {
+        cout << "( " << x << ", " << y << ", " << z << " )" << endl;
+    }
+
     T x, y, z;
 };

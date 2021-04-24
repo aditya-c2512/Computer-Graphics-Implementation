@@ -27,6 +27,7 @@ class Matrix44
         return mult;
     }
 
+    //POINT[1X3] X MATRIX[4X4] WITHOUT HOMOGENOUS VARIABLE W
     template<typename S> 
     void multVecMatrix(const Vec3<S> &src, Vec3<S> &dst) const 
     { 
@@ -42,6 +43,40 @@ class Matrix44
             dst.z = z / w; 
         } 
     } 
+
+    //VECTOR[1X3] X MATRIX[4X4] WITHOUT HOMOGENOUS VARIABLE W
+    template<typename S>
+    void multDirMatrix(const Vec3<S> &src, Vec3<S> &dst) const 
+    { 
+        dst.x = src.x * m[0][0] + src.y * m[1][0] + src.z * m[2][0]; 
+        dst.y = src.x * m[0][1] + src.y * m[1][1] + src.z * m[2][1]; 
+        dst.z = src.x * m[0][2] + src.y * m[1][2] + src.z * m[2][2]; 
+    } 
+
+    Matrix44 transpose()
+    {
+        Matrix44 trans;
+        for(int i = 0; i < 4; i++)
+        {
+            for(int j = 0; j < 4; j++)
+            {
+                trans[i][j] = m[j][i];
+            }
+        }
+        return trans;
+    }
+
+    Matrix44 inverse()
+    {
+        Matrix44 inv;
+        return inv;
+    }
+
+    T determinant()
+    {
+        T det;
+        return det;
+    }
 
     T m[4][4] = {
         {1,0,0,0},

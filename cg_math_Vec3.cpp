@@ -1,4 +1,7 @@
+#include <iostream>
 #include <cmath>
+
+using namespace std;
 
 template<typename T>
 class Vec3

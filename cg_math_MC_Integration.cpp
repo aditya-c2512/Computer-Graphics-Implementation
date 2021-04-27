@@ -3,16 +3,20 @@
 
 using namespace std;
 
+#define R 1.0f
+
 float f(float x)
 {
-    float val = 2*x*x + x;
+    float val = 9*tan(x) + 2*pow(x,3) + 7;
     return val;
 }
 
 int main()
 {
-    long long samples = 100000;
-    float a = 2.0f, b = 10.0f;
+    long long samples = 10000;
+    float a, b;
+    cout << "Enter the limits :" << endl;
+    cin >> a >> b;
     float S = 0.0f;
     for(long long i = 0; i < samples; i++)
     {

@@ -6,11 +6,12 @@ using namespace std;
 float f(float x)
 {
     float val = 2*x*x + x;
+    return val;
 }
 
 int main()
 {
-    long long samples = 1000000;
+    long long samples = 100000;
     float a = 2.0f, b = 10.0f;
     float S = 0.0f;
     for(long long i = 0; i < samples; i++)

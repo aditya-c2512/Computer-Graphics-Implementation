@@ -4,11 +4,12 @@
 template<typename T>
 class Matrix44
 {
+public :
     Matrix44() {}
 
-    const T* operator [](uint8_t i) const
+    T* operator [](uint8_t i)
     { return m[i]; }
-    T* operator [](uint8_t i) const
+    T* operator [](uint8_t i)
     { return m[i]; }
 
     Matrix44 operator *(const Matrix44& rhs) const
@@ -176,3 +177,28 @@ for(uint8_t i = 0; i < 4; i++)
     }
 }
 */
+
+Matrix44<float> lookAt(const Vec3<float>& from, const Vec3<float>& to, Vec3<float>& tmp = Vec3<float>(0, 1, 0))
+{
+    Vec3<float> forward = (from - to).normalize();
+    Vec3<float> right = (tmp.normalize()).cross(forward);
+    Vec3<float> up = forward.cross(right);
+
+    Matrix44<float> camToWorld;
+
+    camToWorld[0][0] = right.x; 
+    camToWorld[0][1] = right.y; 
+    camToWorld[0][2] = right.z; 
+    camToWorld[1][0] = up.x; 
+    camToWorld[1][1] = up.y; 
+    camToWorld[1][2] = up.z; 
+    camToWorld[2][0] = forward.x; 
+    camToWorld[2][1] = forward.y; 
+    camToWorld[2][2] = forward.z; 
+ 
+    camToWorld[3][0] = from.x; 
+    camToWorld[3][1] = from.y; 
+    camToWorld[3][2] = from.z; 
+ 
+    return camToWorld;
+}
